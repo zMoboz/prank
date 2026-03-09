@@ -2,45 +2,56 @@
 <html>
 <head>
 <title>Loading...</title>
+
 <style>
 body{
-  background:black;
-  color:white;
-  text-align:center;
-  margin-top:200px;
-  font-family:Arial;
+    margin:0;
+    background:black;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    color:white;
+    font-family:Arial;
 }
-img{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  display:none;
-}
-button{
-  font-size:22px;
-  padding:15px 30px;
+
+#jumpscare{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:none;
 }
 </style>
+
 </head>
+<body onclick="startPrank()">
 
-<body>
-
-<h2>Tap untuk melanjutkan</h2>
-<button onclick="start()">Start</button>
+<h1>Klik dimana saja untuk melanjutkan...</h1>
 
 <img id="jumpscare" src="jumpscare.jpg">
 
-<audio id="audio" src="scream.mp3"></audio>
+<audio id="sound">
+    <source src="scream.mp3" type="audio/mpeg">
+</audio>
 
 <script>
-function start(){
-  var audio = document.getElementById("audio");
-  audio.volume = 1.0;
-  audio.play();
+function startPrank(){
 
-  document.getElementById("jumpscare").style.display="block";
+    // fullscreen
+    if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen();
+    }
+
+    // tampilkan jumpscare
+    document.getElementById("jumpscare").style.display = "block";
+
+    // play audio volume 100%
+    var audio = document.getElementById("sound");
+    audio.volume = 1.0;
+    audio.play();
 }
 </script>
 
